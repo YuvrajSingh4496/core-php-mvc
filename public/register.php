@@ -27,7 +27,7 @@ require_once "../Router/GuestRouter.php";
                         action="<?php $_SERVER['PHP_SELF']; ?>" 
                         method="POST"
                     >
-                    <div class="flex flex-row justify-evenly gap-3">
+                    <div class="flex flex-col md:flex-row justify-evenly gap-3">
                         <div class="flex flex-col gap-2">
                             <input class="text-xl" type="text" name="first_name" placeholder="First Name..." required />
                             <?php if (isset($result['first_name'])) {?>

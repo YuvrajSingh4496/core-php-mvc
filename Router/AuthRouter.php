@@ -1,19 +1,7 @@
 <?php
-session_start();
+require_once "../Middlewares/AuthMiddleware.php";
 use App\Controllers\UserController;
-use App\Classes\Session;
+use App\Controllers\PostController;
 
-if (!Session::user()) {
-    header("location: login.php?error=Login Required!");
-    exit();
-}
-
-$user_model = new UserController;
-
-// if (isset($_POST['login'])) {
-//     $result = $user_model->authorize($_POST);
-// }
-
-// if (isset($_POST['register'])) {
-//     $result = $user_model->create($_POST);
-// }
+$user_controller = new UserController;
+$post_controller = new PostController;
