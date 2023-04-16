@@ -17,6 +17,18 @@ class Session {
         return null;
     }
 
+    static public function delete($key) {
+        $key = Session::get($key);
+        if ($key) {
+            unset($_SESSION[$key]);
+        }
+    }
+
+    static public function destory() {
+        unset($_SESSION);
+        session_destroy();
+    }
+
     static public function user() {
         $user  = Session::get("user");
         return $user;

@@ -20,7 +20,7 @@ class UserController implements Controller {
         if (!$response[0]) {
             return $response[1];
         }
-
+        
         header("location: dashboard.php?message=Login Successfull!");
         exit();
     }

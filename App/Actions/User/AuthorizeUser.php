@@ -13,14 +13,14 @@ class AuthorizeUser implements Action {
         if (!$validated[0]) {
             return $validated;
         }
-        
+
         $user = $model->where("username", '=', $validated[1]['username'])->first();
         if (!$user) {
             return [false, [
                 "username" => "Incorrect Username or Password!"
             ]];
         }
-        echo $user->password;
+
         // checking password
         if (!password_verify($validated[1]['password'], $user->password)) {
             return [false, [
@@ -30,11 +30,11 @@ class AuthorizeUser implements Action {
         }
 
         Session::set("user", [
-            "username" => $user['username'],
-            "first_name" => $user['first_name'],
-            "last_name" => $user['last_name']
+            "username" => $user->username,
+            "first_name" => $user->first_name,
+            "last_name" => $user->last_name
         ]);
 
-        return [true, Session::get("user")];
+        return [true, Session::user()];
     }
 }

@@ -7,5 +7,19 @@
         <p><?php echo $_GET['message'] ?></p>
         <i id="toggle-message" class="bi bi-x-lg"></i>
     </div>
+    
+</div>
+<?php } ?>
+
+<?php if (isset($_GET['error'])) { ?>
+<div class="m-5" id="message">
+    <div class="p-2 text-center text-white 
+                rounded-md border-2 bg-red-500 
+                flex flex-row gap-5 align-center justify-center"
+    >
+        <p><?php echo $_GET['error'] ?></p>
+        <i id="toggle-message" class="bi bi-x-lg"></i>
+    </div>
+    
 </div>
 <?php } ?>

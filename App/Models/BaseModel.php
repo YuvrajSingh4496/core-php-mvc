@@ -6,12 +6,12 @@ use App\Interfaces\Model;
 
 class BaseModel extends Database implements Model {
     protected $conn;
-    protected $table;  // Table this model is connected to
+    protected $table;  // Table the child class is connected to
     protected $result;
 
     public function __construct () {
         $this->conn = $this->connect();
-        $this->result = null;
+        $this->result = [];
     }
 
 
@@ -34,27 +34,29 @@ class BaseModel extends Database implements Model {
 
     }
 
-    public function where($data, $expression, $value) {
-        $statement = "SELECT * FROM ". $this->table . " WHERE :data :expression :value";
+    public function where($column, $expression, $value) {
+        $statement = "SELECT * FROM ". $this->table . " WHERE ". $column ." ". $expression ." :value";
         $query = $this->conn->prepare($statement);
-        $query->bindParam(":data", $data);
-        $query->bindParam(":expression", $expression);
-        $query->bindParam(":value", $value);
+        // $query->bindParam(":column", $column, PDO::PARAM_STR);
+        // $query->bindParam(":expression", $expression, PDO::PARAM_STR_CHAR);
+        $query->bindParam(":value", $value, PDO::PARAM_STR);
         $query->execute();
         $this->result = $query->fetchAll();
         return $this; 
     }
 
-    public function count() {}
+    public function count() {
+        return count($this->result);
+
+    }
 
     public function get() {
         if (!$this->result) return null;
 
         return $this->result;
     }
-    public function first() {
-        if (!$this->result) return null;     
-        if (count($this->result) < 1) return [];
+    public function first() {    
+        if (count($this->result) < 1) return null;
 
         return $this->result[0];
 
