@@ -1,0 +1,44 @@
+:root {
+    --size1: 8px;
+    --size2: 12px;
+    --size3: 16px;
+    --size4: 24px;
+    --size5: 32px;
+
+}
+
+body {
+    margin: 0;
+}
+
+a {
+    cursor: pointer;
+}
+
+header {
+    margin-bottom: 2rem;
+}
+
+main {
+    padding: var(--size5);
+}
+
+.card {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: var(--size3);
+    padding: var(--size5);
+}
+
+.card .header {
+    padding-top: var(--size2); 
+    padding-bottom: var(--size2); 
+    font-size: var(--size5);
+    border-bottom: 1px solid black;
+}
+
+.card .body {
+    padding-top: var(--size2); 
+    padding-bottom: var(--size2); 
+}
