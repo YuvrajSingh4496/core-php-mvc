@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Actions\User\AuthorizeUser;
 use App\Actions\User\CreateUser;
 use App\Interfaces\Controller;
 use App\Models\User;
@@ -15,7 +16,13 @@ class UserController implements Controller {
     }
 
     public function authorize($request) {
-        return;
+        $response = AuthorizeUser::execute($request, $this->model);
+        if (!$response[0]) {
+            return $response[1];
+        }
+
+        header("location: dashboard.php?message=Login Successfull!");
+        exit();
     }
     
     public function create($request) {
@@ -28,10 +35,7 @@ class UserController implements Controller {
         exit();
     }
 
-    public function update($request) {
-        return;
-    }
-    public function index($request) {
+    public function show($request) {
         return;
     }
 }

@@ -27,18 +27,28 @@ class BaseModel extends Database implements Model {
     public function find($id) {
         $statement = "SELECT * FROM ". $this->table . " WHERE `id` = :id";
         $query = $this->conn->prepare($statement);
-        // $query->bindParam(":table", $this->table);
         $query->bindParam(":id", $id);
         $query->execute();
         $this->result = $query->fetchAll();
         return $this; 
 
     }
-    public function where($data, $expression, $value) {}
+
+    public function where($data, $expression, $value) {
+        $statement = "SELECT * FROM ". $this->table . " WHERE :data :expression :value";
+        $query = $this->conn->prepare($statement);
+        $query->bindParam(":data", $data);
+        $query->bindParam(":expression", $expression);
+        $query->bindParam(":value", $value);
+        $query->execute();
+        $this->result = $query->fetchAll();
+        return $this; 
+    }
+
     public function count() {}
 
     public function get() {
-        if (!$this->result) return false;
+        if (!$this->result) return null;
 
         return $this->result;
     }

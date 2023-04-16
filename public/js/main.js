@@ -1,4 +1,4 @@
 
-// $("#toggle").click(() => {
-//     $("#heading").toggle();
-// });
+$("#toggle-message").click(() => {
+    $("#message").toggle();
+});

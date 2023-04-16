@@ -12,7 +12,7 @@ class User extends BaseModel {
         $password = $data['password'];
         $first_name = $data['first_name'];
         $last_name = $data['last_name'];
-        $password = md5($password);
+        $password = password_hash($password, PASSWORD_BCRYPT);  
         try {
             $statement = "INSERT INTO " . $this->table . "(`username`, `password`, `first_name`, `last_name`) VALUES(?,?,?,?)";
             $query = $this->conn->prepare($statement);
