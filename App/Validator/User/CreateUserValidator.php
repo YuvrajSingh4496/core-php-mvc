@@ -31,9 +31,9 @@ class CreateUserValidator implements Validator {
         if (strlen($validated["last_name"]) < 2) {
             $errors["last_name"] = "Last Name must be more than 2 characters!";
         }
-        if (count($errors) > 0) return [false, $errors];
+        if (count($errors) > 0) return ["success" => false, "data" => $errors];
 
 
-        return [true, $validated];
+        return ["success" => true, "data" => $validated];
     }
 }

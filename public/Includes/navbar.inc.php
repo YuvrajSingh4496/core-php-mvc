@@ -11,6 +11,9 @@ use App\Classes\Session;
             <a href="register.php" class="hover:text-green-500">Sign Up</a>
         <?php } else { ?>
             
+            <a href="post-index.php" class="hover:text-green-500">Posts</a>
+            <a href="post-create.php" class="hover:text-green-500">Create post</a>
+            <a href="logout.php" class="hover:text-green-500">Logout</a>
             <a href="logout.php" class="hover:text-green-500">Logout</a>
         <?php } ?>
     </div>

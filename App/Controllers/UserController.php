@@ -16,9 +16,9 @@ class UserController implements Controller {
     }
 
     public function authorize($request) {
-        $response = AuthorizeUser::execute($request, $this->model);
-        if (!$response[0]) {
-            return $response[1];
+        $action = AuthorizeUser::execute($request, $this->model);
+        if (!$action["success"]) {
+            return $action["data"];
         }
         
         header("location: dashboard.php?message=Login Successfull!");
@@ -26,9 +26,9 @@ class UserController implements Controller {
     }
     
     public function create($request) {
-        $response = CreateUser::execute($request, $this->model);
-        if ($response[0] == false) {
-            return $response[1];
+        $action = CreateUser::execute($request, $this->model);
+        if (!$action["success"]) {
+            return $action["data"];
         }
 
         header("location: login.php?message=User Registered Successfully!");

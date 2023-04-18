@@ -5,8 +5,7 @@ use App\Classes\Session;
 use App\Controllers\PostController;
 
 $post_controller = new PostController;
-$result = $post_controller->user_posts($_GET);
-
+$result = $post_controller->index($_GET);
 $page = isset($_GET["page"]) ? (int)$_GET["page"] : 1;
 ?>
 <!DOCTYPE html>
@@ -16,7 +15,7 @@ $page = isset($_GET["page"]) ? (int)$_GET["page"] : 1;
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php require_once("./includes/header.inc.php"); ?>
-    <title>Dashboard</title>
+    <title>All Posts</title>
 </head>
 <body>
     <header>
@@ -25,13 +24,11 @@ $page = isset($_GET["page"]) ? (int)$_GET["page"] : 1;
     <main>
         <section id="top" class="flex flex-col text-center p-3">
             <h1 class="text-xl">
-                Welcome to the dashboard <?php echo Session::user()['username']; ?>!
+                All Posts
             </h1>
         </section>
         <section id="middle" class="flex flex-col gap-3 p-3">
-            <div class="bl-2 border-green-500 ">
-                <h1 class="text-md">Your posts!</h1>
-            </div>
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <?php
                 if (count($result["posts"]) > 0) {
@@ -52,10 +49,10 @@ $page = isset($_GET["page"]) ? (int)$_GET["page"] : 1;
                 <div class="col-span-2">
                     <div class="flex flex-row justify-evenly">
                         <?php if ($result['pagination']['prev_page']) { ?>
-                            <a href="dashboard.php?page=<?php echo $page - 1; ?>">Prev</a>
+                            <a href="post-index.php?page=<?php echo $page - 1; ?>">Prev</a>
                         <?php } ?>
                         <?php if ($result['pagination']['next_page']) { ?>
-                            <a href="dashboard.php?page=<?php echo $page + 1; ?>">Next</a>
+                            <a href="post-index.php?page=<?php echo $page + 1; ?>">Next</a>
                         <?php } ?>
                     </div>
                 </div>

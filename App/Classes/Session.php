@@ -33,5 +33,12 @@ class Session {
         $user  = Session::get("user");
         return $user;
     }
+
+    static public function id() {
+        $user  = Session::get("user");
+        if (!$user) return;
+
+        return $user["id"];
+    }
     
 }

@@ -3,19 +3,31 @@ namespace App\Interfaces;
 
 interface Model {
     // For all records
-    public function all();
+    public function all(): Model;
 
     // For a single record
-    public function find($id);
+    public function find(int $id): Model;
 
     // Where conditional on query
-    public function where($data, $expression, $value);
+    public function where(string $column, string $expression, string $value);
 
     // Count the returned records
-    public function count();
+    public function limit(int $limit, int $start = 0);
+
+    // Create a new record
+    public function create(array $data): int;
+
+    // Execute the query
+    public function execute(): Model;
+
+    // Count specific columns
+    public function count(string $column): Model;
+
+    // Count the returned records
+    public function length(): int;
     
     // Delete a record
-    public function delete($data, $value);
+    public function delete(string $column, string $value): bool;
 
     // Get all the records
     public function get();
@@ -23,7 +35,7 @@ interface Model {
     // Get the first record
     public function first();
 
-    // Get 
-    public function take($limit, $start = 0);
+    // Get only result based on limit
+    public function take(int $amount, int $offset = 0);
 
 }

@@ -9,18 +9,24 @@ class CreateUser implements Action {
 
     static public function execute($data, $model) {
         $validated = CreateUserValidator::validate($data);
-        if (!$validated[0]) {
+
+        if (!$validated["success"]) {
             return $validated;
         }
+        
+        $validated[1]["password"] = password_hash($validated[1]["password"], PASSWORD_BCRYPT);
 
         $result = $model->create($validated[1]); 
 
         if (!$result) {
-            return [false, [
-                "username" => "Username Already Exists!"
-            ]];
+            return [
+                "success" => false, 
+                "data" => [
+                   "username" => "Username Already Exists!"
+                ]
+            ];
         } 
         
-        return [true, $result];
+        return ["success" => true, "data" => $result];
     }
 }

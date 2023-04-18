@@ -20,9 +20,9 @@ class AuthorizeUserValidator implements Validator {
             $errors["password"] = "Password Should be more than 8 characters!";
         }
         
-        if (count($errors) > 0) return [false, $errors];
+        if (count($errors) > 0) return ["success" => false, "data" => $errors];
 
 
-        return [true, $validated];
+        return ["success" => true, "data" => $validated];
     }
 }

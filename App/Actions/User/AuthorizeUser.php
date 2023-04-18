@@ -10,23 +10,32 @@ class AuthorizeUser implements Action {
 
     static public function execute($data, $model) {
         $validated = AuthorizeUserValidator::validate($data);
-        if (!$validated[0]) {
+        if (!$validated["success"]) {
             return $validated;
         }
 
-        $user = $model->where("username", '=', $validated[1]['username'])->first();
+        $user = $model->select(['*'])
+                    ->where("username", '=', $validated[1]['username'])
+                    ->execute()
+                    ->first();
+
         if (!$user) {
-            return [false, [
+            return [
+                "success" => false, 
+                "data" => [
                 "username" => "Incorrect Username or Password!"
-            ]];
+                ]
+            ];
         }
 
         // checking password
         if (!password_verify($validated[1]['password'], $user->password)) {
-            return [false, [
+            return [
+                "success" => false, 
+                "data" => [
                 "username" => "Incorrect Username or Password!"
-            ]];
-
+                ]
+            ];
         }
 
         Session::set("user", [
@@ -36,6 +45,6 @@ class AuthorizeUser implements Action {
             "last_name" => $user->last_name
         ]);
 
-        return [true, Session::user()];
+        return ["success" => true, "data" => Session::user()];
     }
 }
