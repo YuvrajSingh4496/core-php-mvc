@@ -10,7 +10,7 @@ class Database {
     private $host = "localhost";
     private $username = "root";
     private $password = "";
-    private $database = "oop";
+    private $database = "php_mvc";
 
     public function connect () {
         $dns = "mysql:host=" . $this->host . ";dbname=" . $this->database;
