@@ -15,7 +15,7 @@ class AuthorizeUser implements Action {
         }
 
         $user = $model->select(['*'])
-                    ->where("username", '=', $validated[1]['username'])
+                    ->where("username", '=', $validated["data"]['username'])
                     ->execute()
                     ->first();
 
@@ -29,7 +29,7 @@ class AuthorizeUser implements Action {
         }
 
         // checking password
-        if (!password_verify($validated[1]['password'], $user->password)) {
+        if (!password_verify($validated["data"]['password'], $user->password)) {
             return [
                 "success" => false, 
                 "data" => [

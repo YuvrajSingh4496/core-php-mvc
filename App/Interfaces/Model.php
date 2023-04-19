@@ -37,5 +37,4 @@ interface Model {
 
     // Get only result based on limit
     public function take(int $amount, int $offset = 0);
-
 }

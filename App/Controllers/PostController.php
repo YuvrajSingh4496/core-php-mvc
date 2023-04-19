@@ -6,7 +6,6 @@ use App\Actions\Post\CreatePost;
 use App\Interfaces\Controller;
 use App\Classes\Session;
 use App\Models\Post;
-use App\Classes\Helper;
 
 class PostController implements Controller {
 
@@ -28,7 +27,7 @@ class PostController implements Controller {
         return [
             "posts" => $result,
             "count" => $count,
-            "pagination" => Helper::paginator($page, $count)
+            "pagination" => paginator($page, $count)
         ];
     }
 
@@ -48,7 +47,7 @@ class PostController implements Controller {
         return [
             "posts" => $result,
             "count" => $count,
-            "pagination" => Helper::paginator($page, $count)
+            "pagination" => paginator($page, $count)
         ];
     }
 
@@ -63,6 +62,15 @@ class PostController implements Controller {
     }
 
     public function show($request) {
-        return;
+        $post_id = $request["post_id"];
+        $post  = $this->model->select([
+                    "posts.title", "posts.content", "posts.created_at", "users.username"
+                ])->with("users", "user_id", "id")
+                ->where("id", '=', $post_id)
+                ->execute()->first();
+                // print_r($post);
+        return [
+            "post" => $post
+        ];
     }
 }

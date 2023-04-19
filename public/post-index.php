@@ -35,11 +35,8 @@ $page = isset($_GET["page"]) ? (int)$_GET["page"] : 1;
                  foreach ($result["posts"] as $post) { ?>
                     <div class="flex flex-row justify-between hover:shadow-xl rounded-md border-l-2 border-green-500 p-2">
                         <div class="flex flex-col gap-3">
-                            <a href="post.php?id=<?php echo $post->id; ?>"><h1><?php echo $post->title; ?></h1></a>
+                            <a href="post-view.php?post_id=<?php echo $post->id; ?>"><h1><?php echo $post->title; ?></h1></a>
                             <p class="text-slate-500"><?php echo date("D, d M, y h:i A", strtotime($post->created_at)); ?></p>
-                        </div>
-                        <div class="flex flex-col gap-3">
-                            <a href="post-delete.php?id=<?php echo $post->id; ?>" class="text-2xl text-red-500"><i class="bi bi-trash"></i></a>
                         </div>
                     </div>
                 <?php } 

@@ -25,6 +25,7 @@ class BaseModel extends Database implements Model {
         $query = $this->conn->prepare($this->query);
         $params = $this->params;
         $param_count = count($params);
+        // echo $this->query;
         if ($param_count) {
             for ($i = 1; $i <= $param_count; $i++) {
                 if (gettype($params[$i - 1]) == "integer") 
@@ -95,12 +96,18 @@ class BaseModel extends Database implements Model {
         return $this;
     }
 
+    public function with(string $table, string $local_key, string $foreign_key) {
+        $statement = " JOIN `$table` ON `$this->table`.`$local_key` = `$table`.`$foreign_key`";
+        $this->query .= $statement;
+        return $this;
+    }
+
     public function where(string $column, string $expression, string $value) {
         $statement = ' ';
         if (strpos($this->query, "WHERE")) {
-            $statement .= "AND $column $expression ?"; 
+            $statement .= "AND `$this->table`.`$column` $expression ?"; 
         } else {
-            $statement .= "WHERE $column $expression ?";
+            $statement .= "WHERE `$this->table`.`$column` $expression ?";
         }
 
         $this->query .= $statement;
@@ -117,7 +124,7 @@ class BaseModel extends Database implements Model {
     }
     public function delete(string $column, string $value): bool {
         try {
-            $statement = "DELETE FROM " . $this->table . " WHERE ". $column . " = :value";
+            $statement = "DELETE FROM `$this->table` WHERE `$this->table`.`$column` = :value";
             $query = $this->conn->prepare($statement);
             $query->bindParam(":value", $value, PDO::PARAM_STR);
             $query->execute();
@@ -128,7 +135,7 @@ class BaseModel extends Database implements Model {
     }
 
     public function count(string $column = '*'): Model {
-        $statement = "SELECT COUNT($column) as count FROM ". $this->table;
+        $statement = "SELECT COUNT($column) as count FROM `$this->table`";
         $this->query .= $statement;
         return $this;
     }

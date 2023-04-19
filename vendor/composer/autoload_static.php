@@ -6,6 +6,10 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit6a98235f200822522d85174c62fce0f1
 {
+    public static $files = array (
+        'fcbbe899f4cd35267c00f3777cef4e94' => __DIR__ . '/../..' . '/App/Providers/Helper.php',
+    );
+
     public static $prefixLengthsPsr4 = array (
         'A' => 
         array (
@@ -21,15 +25,6 @@ class ComposerStaticInit6a98235f200822522d85174c62fce0f1
     );
 
     public static $classMap = array (
-        'App\\Actions\\User\\CreateUser' => __DIR__ . '/../..' . '/App/Actions/User/CreateUser.php',
-        'App\\Classes\\Session' => __DIR__ . '/../..' . '/App/Classes/Session.php',
-        'App\\Controllers\\UserController' => __DIR__ . '/../..' . '/App/Controllers/UserController.php',
-        'App\\Interfaces\\Action' => __DIR__ . '/../..' . '/App/Interfaces/Action.php',
-        'App\\Interfaces\\Controller' => __DIR__ . '/../..' . '/App/Interfaces/Controller.php',
-        'App\\Interfaces\\Model' => __DIR__ . '/../..' . '/App/Interfaces/Model.php',
-        'App\\Models\\BaseModel' => __DIR__ . '/../..' . '/App/Models/BaseModel.php',
-        'App\\Models\\Database' => __DIR__ . '/../..' . '/App/Models/Database.php',
-        'App\\Models\\User' => __DIR__ . '/../..' . '/App/Models/User.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
     );
 

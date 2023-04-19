@@ -15,6 +15,8 @@ class Post extends BaseModel {
     ];
 
 
+
+
     public function get_latest_posts($limit = 10, $start = 0) {
         $end = ($limit + $start);
         $statement = "SELECT * FROM ". $this->table ." ORDER BY `created_at` DESC LIMIT :start, :end";
