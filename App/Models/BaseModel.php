@@ -84,7 +84,7 @@ class BaseModel extends Database implements Model {
         return $this;
     }
 
-    public function select(array $columns = []) {
+    public function select(array $columns = []): Model {
         if (count($columns) < 1) {
             $columns = implode(',', $this->showable);
         } else {
@@ -96,7 +96,7 @@ class BaseModel extends Database implements Model {
         return $this;
     }
 
-    public function with(string $table, string $local_key, string $foreign_key) {
+    public function with(string $table, string $local_key, string $foreign_key): Model {
         $statement = " JOIN `$table` ON `$this->table`.`$local_key` = `$table`.`$foreign_key`";
         $this->query .= $statement;
         return $this;
@@ -165,5 +165,4 @@ class BaseModel extends Database implements Model {
         $result = array_slice($this->result, $offset, ($amount + $offset));
         return $result;
     }
-
 }

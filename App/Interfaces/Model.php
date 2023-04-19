@@ -2,6 +2,10 @@
 namespace App\Interfaces;
 
 interface Model {
+
+    // Select specific columns
+    public function select(array $columns = []): Model;
+
     // For all records
     public function all(): Model;
 
@@ -20,8 +24,11 @@ interface Model {
     // Execute the query
     public function execute(): Model;
 
+    // Join relational data
+    public function with(string $table, string $local_key, string $foreign_key): Model;
+
     // Count specific columns
-    public function count(string $column): Model;
+    public function count(string $column = '*'): Model;
 
     // Count the returned records
     public function length(): int;

@@ -4,8 +4,6 @@ require_once "../Router/AuthRouter.php";
 use App\Classes\Session;
 use App\Controllers\PostController;
 
-use function App\Classes\format_date;
-
 $post_controller = new PostController;
 $result = $post_controller->show($_GET);
 $post = $result["post"];
@@ -37,6 +35,10 @@ $post = $result["post"];
             <div class="p-5">
                 <p>Created By: <?php echo $post->username; ?></p>
             </div>
+        </section>
+        <section id="comments" class="flex flex-col text-center p-3">
+            <h1>Comments</h1>
+            
         </section>
     </main>
     <footer>

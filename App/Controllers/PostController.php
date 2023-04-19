@@ -6,49 +6,26 @@ use App\Actions\Post\CreatePost;
 use App\Interfaces\Controller;
 use App\Classes\Session;
 use App\Models\Post;
+use App\Services\PostService;
 
 class PostController implements Controller {
 
     protected $model;
+    protected $service;
 
     public function __construct() {
         $this->model = new Post;
+        $this->service = new PostService;
     }
 
     public function index($request) {
-        $page = isset($request['page']) ? (int)$request["page"] : 1;
-        $start = ($page - 1) * 10;
-                    
-        $result = $this->model->select()
-                    ->limit(10, $start)
-                    ->execute()->get();
-
-        $count = $this->model->count()->execute()->first()->count;
-        return [
-            "posts" => $result,
-            "count" => $count,
-            "pagination" => paginator($page, $count)
-        ];
+        $result = $this->service->index($request, $this->model);
+        return $result;
     }
 
     public function user_posts($request) {
-        $page = isset($request['page']) ? (int)$request["page"] : 1;
-        $start = ($page - 1) * 10;
-        $user_id = Session::user()['id'];
-        $result = $this->model->select()
-                    ->where("user_id", '=', $user_id)
-                    ->limit(10, $start)
-                    ->execute()->get();
-
-        $count = $this->model->count()
-                    ->where("id", '=', $user_id)
-                    ->execute()->first()->count;
-
-        return [
-            "posts" => $result,
-            "count" => $count,
-            "pagination" => paginator($page, $count)
-        ];
+        $result = $this->service->all_user_posts($request, $this->model);
+        return $result;
     }
 
     public function create($request) {
@@ -62,15 +39,7 @@ class PostController implements Controller {
     }
 
     public function show($request) {
-        $post_id = $request["post_id"];
-        $post  = $this->model->select([
-                    "posts.title", "posts.content", "posts.created_at", "users.username"
-                ])->with("users", "user_id", "id")
-                ->where("id", '=', $post_id)
-                ->execute()->first();
-                // print_r($post);
-        return [
-            "post" => $post
-        ];
+        $result = $this->service->show($request["post_id"], $this->model);
+        return $result;
     }
 }
