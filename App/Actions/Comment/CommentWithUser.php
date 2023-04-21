@@ -1,14 +1,16 @@
 <?php
 
-namespace App\Actions\Post;
+namespace App\Actions\Comment;
 
 use App\Interfaces\Action;
 use App\Interfaces\Model;
 
-class PostWithUser implements Action {
+class CommentWithUser implements Action {
     
     static public function execute(array $data, Model $model) {
-        $post  = $model->select([
+        $post_id = $data["post_id"];
+
+        $comments = $model->select([
             "posts.title", "posts.content", "posts.created_at", "users.username"
         ])->with("users", "user_id", "id")
         ->where("id", '=', $data["post_id"])

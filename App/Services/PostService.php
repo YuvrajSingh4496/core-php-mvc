@@ -2,10 +2,12 @@
 
 namespace App\Services;
 
+use App\Actions\Post\PostComments;
 use App\Classes\Session;
 use App\Interfaces\Model;
 use App\Interfaces\Service;
 use App\Actions\Post\PostWithUser;
+use App\Models\Comment;
 
 class PostService implements Service {
 
@@ -25,12 +27,13 @@ class PostService implements Service {
         ];
     }
 
-    public function show(int $post_id, Model $model): array {
+    public function show_post(array $request, Model $model): array {
+        $post_id = $request["post_id"];
         $post = PostWithUser::execute(["post_id" => $post_id], $model);
-        $comment = new Comment;
-        $comments = 
+        $comments = PostComments::execute(["post_id" => $post_id], (new Comment));
         return [
-            "post" => $post
+            "post" => $post,
+            "comments" => $comments
         ];
     }
 

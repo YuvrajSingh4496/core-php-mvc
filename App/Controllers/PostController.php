@@ -37,9 +37,15 @@ class PostController implements Controller {
         header("location: post-create.php?message=Post Created Successfully!");
         exit();
     }
-
+    
     public function show($request) {
-        $result = $this->service->show($request["post_id"], $this->model);
-        return $result;
+        try {
+            $result = $this->service->show_post($request, $this->model);
+            return $result;
+        } catch (\Exception $e) {
+            // print_r($e);
+            header("location: post-index.php?error=An Error Occured!");
+            exit();
+        }
     }
 }

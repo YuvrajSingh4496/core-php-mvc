@@ -4,14 +4,13 @@ namespace App\Models;
 
 use PDOException;
 
-class User extends BaseModel {
+class Comment extends BaseModel {
     protected string $table = "comments";
     protected array $showable = [
-        "id", "comment", "created_at", "user"
+        "id", "comment", "created_at", "user_id", "post_id"
     ];
 
     protected array $fillable = [
-        "username", "password", "first_name", "last_name"
+        "comment", "user_id", "post_id"
     ];
-
 }

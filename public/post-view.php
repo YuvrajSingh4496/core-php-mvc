@@ -7,6 +7,7 @@ use App\Controllers\PostController;
 $post_controller = new PostController;
 $result = $post_controller->show($_GET);
 $post = $result["post"];
+$comments = $result["comments"];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,9 +37,25 @@ $post = $result["post"];
                 <p>Created By: <?php echo $post->username; ?></p>
             </div>
         </section>
-        <section id="comments" class="flex flex-col text-center p-3">
-            <h1>Comments</h1>
-            
+        <section id="comments" class="flex flex-col p-3">
+            <h1 class="text-center">Comments</h1>
+            <div class="p-3">
+                <?php 
+                if (count($comments) > 0) {
+                    foreach ($comments as $comment) { ?>
+                    <div class="flex flex-col p-2">
+                        <h1>
+                            <?php echo $comment->username; ?> 
+                            <small class="text-slate-500">on <?php echo format_date($comment->created_at); ?></small>
+                        </h1>
+                        <p><?php echo $comment->comment; ?></p>
+                    </div>
+                <?php }
+                } else {
+                    echo "<h1>No comments!</h1>";
+                }
+                ?>
+            </div>
         </section>
     </main>
     <footer>
