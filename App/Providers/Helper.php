@@ -19,3 +19,14 @@ function paginator($page, $total, $limit = 10) {
 function format_date(string $date) {
     return date("D, d M, y h:i A", strtotime($date));
 }
+
+function dd(...$args) {
+    $i = 0;
+    echo "<pre>";
+    foreach ($args as $arg) {
+        echo $i. ": ";
+        print_r($arg);
+        echo "<br>";
+    }
+    echo "</pre>";
+}

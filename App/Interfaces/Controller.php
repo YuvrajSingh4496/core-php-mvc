@@ -3,9 +3,9 @@ namespace App\Interfaces;
 
 interface Controller {
     
-    // create
-    public function create($request);
+    // // create
+    // public function create($request);
 
-    // for all records
-    public function show($request);
+    // // for all records
+    // public function show($request);
 }

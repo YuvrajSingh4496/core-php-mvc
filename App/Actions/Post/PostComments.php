@@ -12,7 +12,7 @@ class PostComments implements Action {
 
         $comments = $model->select(['*'])
         ->with("users", "user_id", "id")
-        ->where("post_id", '=', $data["post_id"])
+        ->where("post_id", '=', $post_id)
         ->execute()->get();
 
         return $comments;

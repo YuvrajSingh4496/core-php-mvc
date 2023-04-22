@@ -5,11 +5,11 @@ namespace App\Validator\Post;
 use App\Interfaces\Validator;
 
 class CreatePostValidator implements Validator {
-    static public function validate($data) {
+    static public function validate(array $data) {
         $validated = [
             "title" => trim($data['title']),
             "content" => trim($data['content']),
-        ] ;
+        ];
         $errors = [];
 
         if (strlen($validated['title']) < 1 || strlen($validated['title']) > 50) {

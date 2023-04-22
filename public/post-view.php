@@ -39,9 +39,22 @@ $comments = $result["comments"];
         </section>
         <section id="comments" class="flex flex-col p-3 gap-5">
             <h1 class="text-center">Comments</h1>
-            <form class="flex flex-row gap-3">
-                <input class="w-full p-2 rounded-lg border-2" type="text" placeholder="Write a comment..." />
-                <button class="border-green-500 hover:bg-green-500 gip-2 rounded-xl">Comment</button>
+            <form 
+                action="<?php $_SERVER["PHP_SELF"]; ?>"
+                method="POST"
+                class="flex flex-row gap-3">
+                <input class="w-full p-2 rounded-lg border-2" type="text" name="comment" placeholder="Write a comment..." />
+                <?php if (isset($result['comment'])) {?>
+                    <small class="text-red-500"><?php echo $result['comment']; ?></small>
+                <?php } ?>
+                <input type="text" name="post_id" value="<?php echo $post->id; ?>" hidden />
+                <?php if (isset($result['post_id'])) {?>
+                    <small class="text-red-500"><?php echo $result['post_id']; ?></small>
+                <?php } ?>
+                <button
+                    name="create-comment"
+                    type="submit" 
+                    class="border-green-500 hover:bg-green-500 border-2 border-green-400 rounded-xl">Comment</button>
             </form>
             <div class="p-3">
                 <?php 

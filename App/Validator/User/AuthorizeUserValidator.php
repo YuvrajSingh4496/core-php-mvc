@@ -6,7 +6,7 @@ use App\Interfaces\Validator;
 
 class AuthorizeUserValidator implements Validator {
 
-    static public function validate($data) {
+    static public function validate(array $data) {
         $validated = [
             "username" => trim($data['username']),
             "password" => trim($data['password']),
