@@ -27,6 +27,9 @@ interface Model {
     // Join relational data
     public function with(string $table, string $local_key, string $foreign_key): Model;
 
+    // Order by query
+    public function order_by(string $order = "DESC", string $column = "id"): Model;
+
     // Count specific columns
     public function count(string $column = '*'): Model;
 
@@ -44,4 +47,7 @@ interface Model {
 
     // Get only result based on limit
     public function take(int $amount, int $offset = 0);
+
+    // Get query
+    public function get_query(): string;
 }

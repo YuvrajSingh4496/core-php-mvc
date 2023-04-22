@@ -4,9 +4,11 @@ use App\Controllers\UserController;
 $user_controller = new UserController;
 
 if (isset($_POST['login'])) {
-    $result = $user_controller->authorize($_POST);
+    $request = filter_request($_POST); 
+    $result = $user_controller->authorize($request);
 }
 
 if (isset($_POST['register'])) {
-    $result = $user_controller->create($_POST);
+    $request = filter_request($_POST); 
+    $result = $user_controller->create($request);
 }

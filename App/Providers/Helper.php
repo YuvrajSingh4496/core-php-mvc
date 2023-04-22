@@ -30,3 +30,12 @@ function dd(...$args) {
     }
     echo "</pre>";
 }
+
+function filter_request(array $array, string $method = "POST"): array {
+    switch ($method) {
+        case "GET":
+            return filter_input_array(INPUT_GET, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        case "POST":
+            return filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    }
+}

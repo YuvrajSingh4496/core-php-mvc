@@ -102,6 +102,12 @@ class BaseModel extends Database implements Model {
         return $this;
     }
 
+    public function order_by(string $order = "DESC", string $column = "id"): Model {
+        $statement = " ORDER BY $column $order";
+        $this->query .= $statement;
+        return $this;
+    }
+
     public function where(string $column, string $expression, string $value) {
         $statement = ' ';
         if (strpos($this->query, "WHERE")) {
@@ -164,5 +170,9 @@ class BaseModel extends Database implements Model {
 
         $result = array_slice($this->result, $offset, ($amount + $offset));
         return $result;
+    }
+
+    public function get_query(): string {
+        return $this->query;
     }
 }

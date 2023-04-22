@@ -28,12 +28,11 @@ $page = isset($_GET["page"]) ? (int)$_GET["page"] : 1;
             </h1>
         </section>
         <section id="middle" class="flex flex-col gap-3 p-3">
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div class="grid grid-cols-2 gap-5">
                 <?php
                 if (count($result["posts"]) > 0) {
                  foreach ($result["posts"] as $post) { ?>
-                    <div class="flex flex-row justify-between hover:shadow-xl rounded-md border-l-2 border-green-500 p-2">
+                    <div class="flex flex-row col-span-full md:col-span-1 justify-between hover:shadow-xl rounded-md border-l-2 border-green-500 p-2">
                         <div class="flex flex-col gap-3">
                             <a href="post-view.php?post_id=<?php echo $post->id; ?>"><h1><?php echo $post->title; ?></h1></a>
                             <p class="text-slate-500"><?php echo date("D, d M, y h:i A", strtotime($post->created_at)); ?></p>

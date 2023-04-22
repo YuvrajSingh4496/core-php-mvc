@@ -35,7 +35,7 @@ require_once "../Router/AuthRouter.php";
                         <?php } ?>
                     </div>
                     <div class="flex flex-col gap-2">
-                        <textarea class="text-xl" name="content" placeholder="Content..." required></textarea>
+                        <textarea  id="form-textarea" name="content" placeholder="Content..." required></textarea>
                         <?php if (isset($result['content'])) {?>
                             <small class="text-red-500"><?php echo $result['content']; ?></small>
                         <?php } ?>
@@ -51,7 +51,9 @@ require_once "../Router/AuthRouter.php";
             </div>
         </div>
     </main>
-    <footer></footer>
-
+    <footer>
+        <?php include_once "./includes/footerbar.inc.php"; ?>
+    </footer>
+    <?php include_once "./includes/footer.inc.php"; ?>
 </body>
 </html>

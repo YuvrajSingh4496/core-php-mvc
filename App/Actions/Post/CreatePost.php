@@ -15,7 +15,8 @@ class CreatePost implements Action {
         if (!$validated["success"]) {
             return $validated;
         }
-        
+
+        $validated = $validated["data"];
         $result = $model->create([
             "title" => $validated["title"],
             "content" => $validated["content"],

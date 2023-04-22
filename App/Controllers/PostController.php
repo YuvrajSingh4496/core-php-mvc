@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 use App\Actions\Post\CreatePost;
 use App\Interfaces\Controller;
-use App\Classes\Session;
 use App\Models\Post;
 use App\Services\PostService;
 
@@ -39,13 +38,13 @@ class PostController implements Controller {
     }
     
     public function show($request) {
-        try {
+        // try {
             $result = $this->service->show_post($request, $this->model);
             return $result;
-        } catch (\Exception $e) {
-            // print_r($e);
-            header("location: post-index.php?error=An Error Occured!");
-            exit();
-        }
+        // } catch (\Exception $e) {
+        //     // print_r($e);
+        //     header("location: post-index.php?error=An Error Occured!");
+        //     exit();
+        // }
     }
 }

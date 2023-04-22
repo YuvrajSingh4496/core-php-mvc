@@ -16,6 +16,7 @@ class PostService implements Service {
         $start = ($page - 1) * 10;
                     
         $result = $model->select()
+                    ->order_by("DESC", "created_at")
                     ->limit(10, $start)
                     ->execute()->get();
 
@@ -43,8 +44,9 @@ class PostService implements Service {
         $user_id = Session::user()['id'];
         $result = $model->select()
                     ->where("user_id", '=', $user_id)
+                    ->order_by("DESC", "created_at")
                     ->limit(10, $start)
-                    ->execute()->get();
+                    ->execute()->get();        
 
         $count = $model->count()
                     ->where("id", '=', $user_id)
