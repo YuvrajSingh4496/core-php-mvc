@@ -37,8 +37,12 @@ $comments = $result["comments"];
                 <p>Created By: <?php echo $post->username; ?></p>
             </div>
         </section>
-        <section id="comments" class="flex flex-col p-3">
+        <section id="comments" class="flex flex-col p-3 gap-5">
             <h1 class="text-center">Comments</h1>
+            <form class="flex flex-row gap-3">
+                <input class="w-full p-2 rounded-lg border-2" type="text" placeholder="Write a comment..." />
+                <button class="border-green-500 hover:bg-green-500 gip-2 rounded-xl">Comment</button>
+            </form>
             <div class="p-3">
                 <?php 
                 if (count($comments) > 0) {

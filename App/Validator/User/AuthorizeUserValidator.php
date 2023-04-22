@@ -22,7 +22,6 @@ class AuthorizeUserValidator implements Validator {
         
         if (count($errors) > 0) return ["success" => false, "data" => $errors];
 
-
         return ["success" => true, "data" => $validated];
     }
 }
