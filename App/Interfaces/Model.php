@@ -21,6 +21,9 @@ interface Model {
     // Create a new record
     public function create(array $data): int;
 
+    // Update a ne record
+    public function update(array $data, string $column, string $value): int;
+
     // Execute the query
     public function execute(): Model;
 

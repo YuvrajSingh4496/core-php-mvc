@@ -11,6 +11,13 @@ if (isset($_POST["create-post"])) {
     $result = $post_controller->create($request);
 }
 
+// Update a post
+if (isset($_POST["update-post"])) {
+    $request = filter_request("POST"); 
+    $post_controller = new PostController;
+    $result = $post_controller->update($request);
+}
+
 
 // Create a comment
 if (isset($_POST["create-comment"])) {  

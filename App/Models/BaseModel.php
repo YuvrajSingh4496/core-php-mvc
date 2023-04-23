@@ -69,6 +69,38 @@ class BaseModel extends Database implements Model {
         }
     }
 
+    public function update (array $data, string $column, string $value): int {
+        $values = [];
+        $columns = [];
+        $param_count = count($values);
+        try {
+            $statement = "UPDATE " . $this->table. " SET ";
+            foreach ($data as $key => $value) {
+                if (in_array($key, $this->fillable)) {
+                    array_push($columns, "$key = ?");
+                    array_push($values, $value);
+                }
+            }
+            $statement .= implode(',', $columns);
+            $statement .= " WHERE $column = ?";
+            $query = $this->conn->prepare($statement);
+            for ($i = 1; $i <= $param_count; $i++) {
+                if (gettype($values[$i - 1]) == "integer") 
+                    $query->bindParam($i, $values[$i - 1], PDO::PARAM_INT);
+                else
+                    $query->bindParam($i, $values[$i - 1], PDO::PARAM_STR);
+            }   
+            
+            $query->bindParam($i + 1, $value, PDO::PARAM_STR);
+
+            dd($query->queryString);
+            $query->execute();
+            return $this->conn->lastInsertId();
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+
     public function all(): Model {
         $statement = "SELECT * FROM " . $this->table;   // IMPORTANT: NEED TO FIX THIS LATER!
         $this->query .= $statement;
