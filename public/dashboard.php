@@ -42,7 +42,7 @@ $page = isset($_GET["page"]) ? (int)$_GET["page"] : 1;
                             <p class="text-slate-500"><?php echo date("D, d M, y h:i A", strtotime($post->created_at)); ?></p>
                         </div>
                         <div class="flex flex-col gap-3">
-                            <a href="post-delete.php?id=<?php echo $post->id; ?>" class="text-2xl text-red-500"><i class="bi bi-trash"></i></a>
+                            <a href="post-edit.php?post_id=<?php echo $post->id; ?>" class="text-2xl text-blue-500"><i class="bi bi-pencil-square"></i></a>
                         </div>
                     </div>
                 <?php } 

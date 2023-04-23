@@ -31,7 +31,11 @@ $comments = $result["comments"];
         </section>
         <section id="middle" class="flex flex-col gap-3 p-3">
             <div class="p-5">
-                <p><?php echo $post->content; ?></p>
+                <p><?php
+                    echo htmlspecialchars_decode(stripslashes($post->content));
+                    // echo strip_tags($post->content, ALLOWED_TAGS);
+                    // echo $post->content; 
+                ?></p>
             </div>
             <div class="p-5">
                 <p>Created By: <?php echo $post->username; ?></p>

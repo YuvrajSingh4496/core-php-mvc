@@ -23,6 +23,7 @@ require_once "../Router/AuthRouter.php";
                 </div>
                 <div class="body">
                     <form 
+                        id="create-post-form"
                         class="flex flex-col gap-3" 
                         action="<?php $_SERVER['PHP_SELF']; ?>" 
                         method="POST"
@@ -35,7 +36,8 @@ require_once "../Router/AuthRouter.php";
                         <?php } ?>
                     </div>
                     <div class="flex flex-col gap-2">
-                        <textarea  id="form-textarea" name="content" placeholder="Content..." required></textarea>
+                        <textarea name="content" id="create-post-form-textarea" required style="visibility: hidden;"></textarea>
+                        <div id="form-textarea"></div>
                         <?php if (isset($result['content'])) {?>
                             <small class="text-red-500"><?php echo $result['content']; ?></small>
                         <?php } ?>

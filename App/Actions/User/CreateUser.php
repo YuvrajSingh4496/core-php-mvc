@@ -14,9 +14,10 @@ class CreateUser implements Action {
             return $validated;
         }
         
-        $validated[1]["password"] = password_hash($validated[1]["password"], PASSWORD_BCRYPT);
+        $validated = $validated["data"];
+        $validated["password"] = password_hash($validated["password"], PASSWORD_BCRYPT);
 
-        $result = $model->create($validated[1]); 
+        $result = $model->create($validated); 
 
         if (!$result) {
             return [

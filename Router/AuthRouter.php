@@ -6,7 +6,7 @@ use App\Controllers\CommentController;
 
 // Create a new post
 if (isset($_POST["create-post"])) {
-    $request = filter_request($_POST); 
+    $request = filter_request("POST"); 
     $post_controller = new PostController;
     $result = $post_controller->create($request);
 }
@@ -14,7 +14,7 @@ if (isset($_POST["create-post"])) {
 
 // Create a comment
 if (isset($_POST["create-comment"])) {  
-    $request = filter_request($_POST); 
+    $request = filter_request("POST"); 
     $comment_controller = new CommentController;
     $result = $comment_controller->create($request);
 }

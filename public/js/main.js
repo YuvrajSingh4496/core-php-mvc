@@ -14,3 +14,8 @@ var quill = new Quill('#form-textarea', {
     placeholder: 'Compose an epic...',
     theme: 'snow'  // or 'bubble'
   });
+
+  $(".ql-editor").on("keypress", function (e) {
+    let hvalue = $('.ql-editor').html();
+    $("#create-post-form-textarea").val(hvalue);
+   });

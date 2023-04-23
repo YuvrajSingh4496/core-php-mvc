@@ -1,6 +1,7 @@
 <?php 
 require __DIR__ . "/../vendor/autoload.php";
 require_once "../Router/AuthRouter.php";
+
 use App\Classes\Session;
 use App\Controllers\PostController;
 
@@ -37,6 +38,11 @@ $page = isset($_GET["page"]) ? (int)$_GET["page"] : 1;
                             <a href="post-view.php?post_id=<?php echo $post->id; ?>"><h1><?php echo $post->title; ?></h1></a>
                             <p class="text-slate-500"><?php echo date("D, d M, y h:i A", strtotime($post->created_at)); ?></p>
                         </div>
+                        <?php if ($post->user_id == Session::id()) { ?>
+                        <div class="flex flex-col gap-3">
+                            <a href="post-edit.php?post_id=<?php echo $post->id; ?>" class="text-2xl text-blue-500"><i class="bi bi-pencil-square"></i></a>
+                        </div>
+                        <?php } ?>
                     </div>
                 <?php } 
                 } else {

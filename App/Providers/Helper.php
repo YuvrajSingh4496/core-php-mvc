@@ -1,4 +1,9 @@
 <?php
+/* -----------------------------   
+|   Generic Helper Functions   |
+-------------------------------*/
+
+
 function paginator($page, $total, $limit = 10) {
     $links = [
         "prev_page" => true,
@@ -31,7 +36,7 @@ function dd(...$args) {
     echo "</pre>";
 }
 
-function filter_request(array $array, string $method = "POST"): array {
+function filter_request(string $method = "POST"): array {
     switch ($method) {
         case "GET":
             return filter_input_array(INPUT_GET, FILTER_SANITIZE_FULL_SPECIAL_CHARS);

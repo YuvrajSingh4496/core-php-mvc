@@ -6,9 +6,10 @@ use App\Interfaces\Validator;
 
 class CreatePostValidator implements Validator {
     static public function validate(array $data) {
+
         $validated = [
             "title" => trim($data['title']),
-            "content" => trim($data['content']),
+            "content" => str_replace("?php", ">", trim($data['content'])),
         ];
         $errors = [];
 

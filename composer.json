@@ -5,7 +5,8 @@
             "App\\": "App/"
         },
         "files": [
-            "./App/Providers/Helper.php"
+            "./App/Providers/Helper.php",
+            "./App/Providers/Constants.php"
         ]
     },
     "authors": [
