@@ -46,8 +46,8 @@ class PostController implements Controller {
                 return $action["data"];
             }
     
-            // header("location: post-view.php?post_id=". $request["post_id"] ."&message=Post Updated Successfully!");
-            // exit();
+            header("location: post-view.php?post_id=". $request["post_id"] ."&message=Post Updated Successfully!");
+            exit();
         } catch (Exception $e) {
             dd($e);
         }
