@@ -183,15 +183,13 @@ class BaseModel extends Database implements Model {
     }
 
     public function get() {
-        if (!$this->result) 
-            return [];
-
         return $this->result;
     }
 
     public function first() {
         if (count($this->result) < 1) 
             return null;
+            
         return $this->result[0];
     }
 
