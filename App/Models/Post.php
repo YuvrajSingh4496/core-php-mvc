@@ -2,8 +2,6 @@
 
 namespace App\Models;
 use App\Models\BaseModel;
-use PDO;
-use PDOException;
 
 class Post extends BaseModel {
     protected string $table = "posts";
@@ -14,9 +12,7 @@ class Post extends BaseModel {
         "title", "content", "user_id"
     ];
 
-
-
-
+    /*
     public function get_latest_posts($limit = 10, $start = 0) {
         $end = ($limit + $start);
         $statement = "SELECT * FROM ". $this->table ." ORDER BY `created_at` DESC LIMIT :start, :end";
@@ -27,4 +23,5 @@ class Post extends BaseModel {
         $this->result = $query->fetchAll();
         return $this;
     }
+    */
 }
