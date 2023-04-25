@@ -11,7 +11,7 @@ class CreatePost implements Action {
 
     static public function execute($data, Model $model) {
         $validated = CreatePostValidator::validate($data);
-
+        
         if (!$validated["success"]) {
             return $validated;
         }
